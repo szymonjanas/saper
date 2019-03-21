@@ -2,17 +2,33 @@
 #include <iostream>
 #include <algorithm>
 
-void MinesweeperBoard::error(std::string err)
-{
-    std::cerr << "ERROR! " << err << std::endl;
-}
-
 MinesweeperBoard::MinesweeperBoard(int MineQuantity,
                                  int BoardSizeX,
                                  int BoardSizeY) :
                                 mineQuantity(MineQuantity),
                                 width(BoardSizeX),
-                                heigh(BoardSizeY) {}
+                                heigh(BoardSizeY)
+{
+    if (checkArgsAreNotOutOfRange(MineQuantity, BoardSizeX, BoardSizeY)){
+        createBoard();
+        setMinesOnRandomFields();
+        setNumbersBombNearby();
+    }
+    else debug::cerr("ERROR! StartBoardMenagement Failed. CheckArgs return false!. ");
+}
+
+MinesweeperBoard::MinesweeperBoard(Debug debug,
+                                   int MineQuantity,
+                                   int BoardSizeX,
+                                   int BoardSizeY) :
+                                        mineQuantity(MineQuantity),
+                                        width(BoardSizeX),
+                                        heigh(BoardSizeY)
+{
+    if (debug == Debug::DEBUG)
+        if (checkArgsAreNotOutOfRange(MineQuantity, BoardSizeX, BoardSizeY))
+            createBoard();
+}
 
 int MinesweeperBoard::getMineCount() const
 {
@@ -31,24 +47,24 @@ int MinesweeperBoard::getBoardHeight() const
 
 bool MinesweeperBoard::checkArgsAreNotOutOfRange(int MineQuantity,
                                      int BoardSizeX,
-                                     int BoardSizeY) const
+                                     int BoardSizeY)
 {
     if(BoardSizeX <= 1 || BoardSizeY <= 1){
-        error("ERROR! Wrong Board size given!");
+        debug::cerr("ERROR! Wrong Board size given!");
         return false;
     }
     if(MineQuantity == 0){
-        error("ERROR! Wrong vectorOfBombLocation size!");
+        debug::cerr("ERROR! Wrong vectorOfBombLocation size!");
         return false;
     }
     if((BoardSizeX-1) * (BoardSizeY-1) < MineQuantity){
-        error("ERROR! Mine count is same or equal to Board size!");
+        debug::cerr("ERROR! Mine count is same or equal to Board size!");
         return false;
     }
     return true;
 }
 
-bool MinesweeperBoard::checkArgsAreNotOutOfRange() const
+bool MinesweeperBoard::checkArgsAreNotOutOfRange()
 {
     return checkArgsAreNotOutOfRange(getMineCount(), getBoardWidth(), getBoardHeight());
 }
@@ -56,11 +72,11 @@ bool MinesweeperBoard::checkArgsAreNotOutOfRange() const
 bool MinesweeperBoard::checkIsFieldOnBoard(int X, int Y) const
 {
     if(getBoardHeight() < Y or getBoardWidth() < X){
-        error("ERROR! Field location is more than board size, and out of board!");
+        debug::cerr("ERROR! Field location is more than board size, and out of board!");
         return false;
     }
     if(Y < 1 or X < 1){
-        error("ERROR! Field location is less than 1, and out of board!");
+        debug::cerr("ERROR! Field location is less than 1, and out of board!");
         return false;
     }
     return true;
@@ -97,7 +113,7 @@ void MinesweeperBoard::setMineOnField(int X, int Y)
 void MinesweeperBoard::makeNewBombLocationToVec(int X, int Y)
 {
     if (checkIsFieldOnBoard(X ,Y)){
-    Location local(X, Y);
+    Vector2xy local(X, Y);
     bombLocation.push_back(local);
     }
 }
@@ -141,51 +157,41 @@ void MinesweeperBoard::setNumbersBombNearby()
                                 incrementNumberOfBomb(countX, countY);
 }
 
-void MinesweeperBoard::setVisitedDFS(int X, int Y)
+void MinesweeperBoard::setAsNotHiddenFieldsNerbyUpToNumberOnField(int x, int y)
 {
-    if (checkIsFieldOnBoard(X ,Y)){
-    verticalFields.at(Y).horizontalFields.at(X).visitedDFS = true;
-    }
-}
-
-bool MinesweeperBoard::isVisited(int X, int Y) const
-{
-    if (checkIsFieldOnBoard(X ,Y)){
-    if(verticalFields.at(Y).horizontalFields.at(X).visitedDFS) return true;
-    else return false;
-    }
-}
-
-void MinesweeperBoard::setAsNotHiddenFieldsNerbyUpToNumberOnField(int X, int Y)
-{
-    if (checkIsFieldOnBoard(X ,Y)){
-    if (!isVisited(X, Y))
+    if (!checkIsFieldOnBoard(x, y)) return;
+    int X = x;
+    int Y = y;
+    struct xy {
+      int X;
+      int Y;
+      xy(int x, int y) : X(x), Y(y){}
+    };
+    std::stack<xy> data;
+    do
     {
-        do{
-            if (!stackDFS.empty()) stackDFS.pop();
-            setVisitedDFS(X, Y);
+        if (isHidden(X, Y))
+        {
             setNotHidden(X, Y);
-            if (isNOBN(X, Y)) {return;}
-            else
+
+            if (!isNOBN(X, Y))
             {
                 for (int counterY = Y - 1; counterY <= Y + 1; ++counterY)
-                    if (counterY > 0 and counterY <= getBoardHeight())
-                        for (int counterX = X - 1; counterX <= X + 1; ++counterX)
-                            if (    counterX > 0 and
-                                    counterX <= getBoardWidth() and
-                                    !isVisited(counterX , counterY))
-                            {
-                                Location local(counterX, counterY);
-                                stackDFS.push(local);
-                            }
+                    for (int counterX = X - 1; counterX <= X + 1; ++counterX)
+                        if (checkIsFieldOnBoard(counterX, counterY))
+                            if (isHidden(counterX, counterY))
+                                data.push(xy(counterX, counterY));
             }
-            if (!stackDFS.empty())
-                setAsNotHiddenFieldsNerbyUpToNumberOnField(stackDFS.top().x, stackDFS.top().y);
+        }
+            if (!data.empty())
+            {
+                X = data.top().X;
+                Y = data.top().Y;
+                data.pop();
+            }
 
-        } while(!stackDFS.empty());
-    }
-    }
-    return;
+
+    } while (!data.empty());
 }
 
 void MinesweeperBoard::showEmptyFieldNearby(int X, int Y)
@@ -254,37 +260,41 @@ int MinesweeperBoard::getNOBN (int X, int Y) const
     return verticalFields.at(Y).horizontalFields.at(X).numberOfBombNearby;
 }
 
-void MinesweeperBoard::setBoardSizeX(int Width)
-{
-    width = Width;
-}
-
-void MinesweeperBoard::setBoardSizeY(int Heigh)
-{
-    heigh = Heigh;
-}
-
-void MinesweeperBoard::setMineQuantity(int MineQuantity)
-{
-    mineQuantity = MineQuantity;
-}
-
-void MinesweeperBoard::startBoardMenagement(int MineQuantity,
-                                           int BoardSizeX,
-                                           int BoardSizeY)
-{
-    if (checkArgsAreNotOutOfRange(MineQuantity, BoardSizeX, BoardSizeY)){
-        setMineQuantity(MineQuantity);
-        setBoardSizeX(BoardSizeX);
-        setBoardSizeY(BoardSizeY);
-        createBoard();
-        setMinesOnRandomFields();
-        setNumbersBombNearby();
-    }
-    else error("ERROR! StartBoardMenagement Failed. CheckArgs return false!. ");
-}
-
-std::vector<Location> MinesweeperBoard::getMinesLocation() const
+std::vector<Vector2xy> MinesweeperBoard::getMinesLocation() const
 {
     return bombLocation;
 }
+/*
+void MinesweeperBoard::debug_display() const
+{
+        std::cout << "Bombs: " << std::endl;
+        std::cout << " ";
+        for (int counter = 1; counter <= getBoardWidth(); ++counter) std::cout << " " << counter;
+        std::cout << std::endl;
+        for (int sY = 1; sY <= getBoardHeight(); ++sY)
+        {
+            std::cout << sY;
+            for (int sX = 1; sX <= getBoardWidth(); ++sX)
+            {
+               std::cout << " " << isMineOnField(sX, sY);
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+        std::cout << "NOBN: " << std::endl;
+        std::cout << " ";
+        for (int counter = 1; counter <= getBoardWidth(); ++counter) std::cout << " " << counter;
+        std::cout << std::endl;
+        for (int sY = 1; sY <= getBoardHeight(); ++sY)
+        {
+            std::cout << sY;
+            for (int sX = 1; sX <= getBoardWidth(); ++sX)
+            {
+               std::cout << " " << getNOBN(sX, sY);
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+        std::cout << std::endl;
+}
+*/

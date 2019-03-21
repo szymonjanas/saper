@@ -3,6 +3,8 @@
 #include<vector>
 #include<iostream>
 #include <stack>
+#include "MessegesDebug.hpp"
+#include "Operations.hpp"
 
 struct Field
 {
@@ -11,9 +13,7 @@ struct Field
         userFlag = false;
         isHidden = true;
         numberOfBombNearby = 0;
-        visitedDFS = false;
     }
-    bool visitedDFS; //for Depth First Search
     bool hasMine;
     bool userFlag;
     bool isHidden;
@@ -25,43 +25,34 @@ struct HorizontalFields
     std::vector<Field> horizontalFields;
 };
 
-struct Location
+struct Vector2xy
 {
   int x;
   int y;
-  Location(){;}
-  Location(int X, int Y) :
+  Vector2xy(){;}
+  Vector2xy(int X, int Y) :
       x(X), y(Y) {}
 };
 
 class MinesweeperBoard
 {
-    void error(std::string err);
-
     std::vector<HorizontalFields> verticalFields;
 
     const int mineQuantity;
     const int width;
     const int heigh;
 
-    void setBoardSizeX(int X);
-    void setBoardSizeY(int Y);
-
     void createBoard();
 
-    void setMineQuantity(int MineQuantity);
     void setMineOnField(int X, int Y);
     void setMinesOnRandomFields();
 
     void incrementNumberOfBomb(int X, int Y);
     void setNumbersBombNearby();
 
-    std::stack<Location> stackDFS;
-    void setVisitedDFS(int X, int Y);
-    bool isVisited(int X, int Y) const;
     void setAsNotHiddenFieldsNerbyUpToNumberOnField(int X, int Y);
 
-    std::vector<Location> bombLocation;
+    std::vector<Vector2xy> bombLocation;
     void makeNewBombLocationToVec(int X, int Y);
 
  public:
@@ -69,11 +60,14 @@ class MinesweeperBoard
     MinesweeperBoard(int MineQuantity,
                     int BoardSizeX,
                     int BoardSizeY);
-
-    bool checkArgsAreNotOutOfRange() const;
-    bool checkArgsAreNotOutOfRange(  int MineQuantity,
-                                int BoardSizeX,
-                                int BoardSizeY) const;
+    MinesweeperBoard(Debug debug,
+                     int MineQuantity,
+                     int BoardSizeX,
+                     int BoardSizeY);
+    bool checkArgsAreNotOutOfRange();
+    bool checkArgsAreNotOutOfRange( int MineQuantity,
+                                    int BoardSizeX,
+                                    int BoardSizeY);
 
     bool checkIsFieldOnBoard(int X, int Y) const;
 
@@ -92,16 +86,11 @@ class MinesweeperBoard
 
     void showEmptyFieldNearby(int X, int Y);
 
-    void startBoardMenagement(int MineQuantity,
-                              int BoardSizeX,
-                              int BoardSizeY);
-
-    std::vector<Location> getMinesLocation() const;
+    std::vector<Vector2xy> getMinesLocation() const;
 
     int getMineCount() const;
     int getBoardWidth() const;
     int getBoardHeight() const;
 
-    void debug_display() const;
-
+    //void debug_display() const;
 };
