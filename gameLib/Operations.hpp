@@ -6,7 +6,7 @@ enum class ShowStatus
     WIN,
     TABLE,
     CLEAR,
-    BOMBS,
+    SHOW_BOARD,
     SCORES
 };
 
@@ -23,7 +23,9 @@ enum class FieldStatus
     HIDDEN,
     EMPTY,
     BOMB,
-    NUMBER
+    NUMBER,
+    ERROR,
+    BLOW_UP
 };
 
 enum class Level
@@ -32,4 +34,22 @@ enum class Level
     MEDIUM,
     HARD,
     USER
+};
+
+enum class GameStatus
+{
+    RUNNING,
+    FINISH_WIN,
+    FINISH_LOOSE
+};
+
+enum class Debug
+{
+    DEBUG
+};
+
+enum class Layer
+{
+    CONSOLE,
+    GRAPHIC
 };

@@ -5,7 +5,7 @@ class GameDetails
 {
     int sizeX;
     int sizeY;
-    int bombQuantity;
+    int MineQuantity;
 
 public:
     GameDetails(Level level)
@@ -15,52 +15,54 @@ public:
         case Level::EASY:
             sizeX = 8;
             sizeY = 8;
-            bombQuantity = 10;
+            MineQuantity = 10;
             break;
         case Level::MEDIUM:
             sizeX = 16;
             sizeY = 16;
-            bombQuantity = 40;
+            MineQuantity = 40;
             break;
         case Level::HARD:
             sizeX = 30;
             sizeY = 16;
-            bombQuantity = 99;
+            MineQuantity = 99;
+            break;
+        case Level::USER:
             break;
         }
     }
     GameDetails(Level level,
                 int SizeX,
                 int SizeY,
-                int BombQuantity)
+                int MineQuantity)
     {
         if (level == Level::USER)
         {
             sizeX = SizeX;
             sizeY = SizeY;
-            bombQuantity = BombQuantity;
+            this->MineQuantity = MineQuantity;
         }
     }
     int getSizeX() const { return sizeX; }
     int getSizeY() const { return sizeY; }
-    int getBombQuantity() const {return bombQuantity; }
+    int getMineQuantity() const {return MineQuantity; }
 };
 
-struct MinMaxFieldSizeAndBombQuantity
+struct MinMaxFieldSizeAndMineQuantity
 {
-    const int MaxTableSizeX;
-    const int MaxTableSizeY;
-    const int MinTableSizeX;
-    const int MinTableSizeY;
-    const int MaxBombQuantity;
-    const int MinBombQuantity;
+    const int MaxBoardSizeX;
+    const int MinBoardSizeX;
+    const int MaxBoardSizeY;
+    const int MinBoardSizeY;
+    const int MaxMineQuantity;
+    const int MinMineQuantity;
 
-    MinMaxFieldSizeAndBombQuantity() : MaxTableSizeX(30),
-                                       MinTableSizeX(8),
-                                       MaxTableSizeY(24),
-                                       MinTableSizeY(8),
-                                       MaxBombQuantity(668),
-                                       MinBombQuantity(10) {}
+    MinMaxFieldSizeAndMineQuantity() : MaxBoardSizeX(30),
+                                       MinBoardSizeX(8),
+                                       MaxBoardSizeY(24),
+                                       MinBoardSizeY(8),
+                                       MaxMineQuantity(668),
+                                       MinMineQuantity(10) {}
 
 
 };
