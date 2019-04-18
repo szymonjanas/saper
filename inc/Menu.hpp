@@ -9,25 +9,25 @@
 #include "SFML/Window.hpp"
 
 
-class Menu
-{   
-    GameManagement* board;
-    Game* game;
-    sf::RenderWindow* window;
+//class Menu
+//{
+//    GameManagement* board;
+//    Game* game;
+//    sf::RenderWindow* window;
 
-    void setGraphicLayer(Level level);
-    void setConsoleLayer(Level level);
-    Level GraphicMenu();
-    Level ConsoleMenu();
+//    void setGraphicLayer(GameMode level);
+//    void setConsoleLayer(GameMode level);
+//    GameMode GraphicMenu();
+//    GameMode ConsoleMenu();
 
-    //GRAPHIC
-    void drawButton(float posX, float posY, std::string sign, sf::RenderWindow* window);
-    enum class Button {EASY, MEDIUM, HARD, EXIT};
-    Button decodePosition(int posX, int posY);
+//    //GRAPHIC
+//    void drawButton(float posX, float posY, std::string sign, sf::RenderWindow* window);
+//    enum class Button {EASY, MEDIUM, HARD, EXIT};
+//    Button decodePosition(int posX, int posY);
 
-public:
-    Menu();
-    ~Menu();
-    void turnOnGame(Layer layer);
+//public:
+//    Menu();
+//    ~Menu();
+//    void turnOnGame(Layer layer);
 
-};
+//};
