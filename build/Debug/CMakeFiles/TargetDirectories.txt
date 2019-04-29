@@ -1,0 +1,5 @@
+/home/szymon/CppProjects/saper/build/Debug/CMakeFiles/rebuild_cache.dir
+/home/szymon/CppProjects/saper/build/Debug/CMakeFiles/saper-tests.dir
+/home/szymon/CppProjects/saper/build/Debug/CMakeFiles/edit_cache.dir
+/home/szymon/CppProjects/saper/build/Debug/CMakeFiles/saper-lib.dir
+/home/szymon/CppProjects/saper/build/Debug/CMakeFiles/saper.dir

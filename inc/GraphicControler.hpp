@@ -1,19 +1,19 @@
 #pragma once
 #include <iostream>
-#include <SFML/Window.h>
+#include <SFML/Window.hpp>
 #include <vector>
 #include<SFML/Graphics.hpp>
 #include<time.h>
-#include<SFML/Window.hpp>
-#include<SFML/Graphics.h>
-#include"GraphicLayer.hpp"
+#include"GraphicView.hpp"
+#include "GraphicView.hpp"
+#include "MousePositionConverter.hpp"
 
-class MSSFMLView
+class GraphicControler
 {
     sf::RenderWindow* window;
     MinesweeperBoard* board;
-    FieldShapeDrawingFactory* drawElements;
-    MSGraphicMouseConverter* converter;
+    GraphicView* drawElements;
+    MousePositionConverter* converter;
 
     int distanceFromLeftEdge;
     int distanceFromTopEdge;
@@ -23,8 +23,13 @@ class MSSFMLView
     int fieldSizeX;
     int fieldSizeY;
 
+    int screenSizeX;
+    int screenSizeY;
+
 public:
-    MSSFMLView(MinesweeperBoard* board);
-    ~MSSFMLView();
+    GraphicControler(MinesweeperBoard* board);
+    ~GraphicControler();
     void play();
 };
+
+

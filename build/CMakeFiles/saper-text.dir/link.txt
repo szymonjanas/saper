@@ -1,0 +1,1 @@
+/usr/bin/g++    -rdynamic CMakeFiles/saper-text.dir/src/mainText.cpp.o  -o saper-text  -LSFML_LIBRARY_DIR -Wl,-rpath,SFML_LIBRARY_DIR libsaper-lib.a /home/szymon/SFML-2.5.1/lib/libsfml-graphics.so.2.5.1 /home/szymon/SFML-2.5.1/lib/libsfml-window.so.2.5.1 /home/szymon/SFML-2.5.1/lib/libsfml-system.so.2.5.1 

@@ -1,33 +1,80 @@
 #pragma once
-#include "Game.hpp"
-#include "ConsoleLayer.hpp"
-#include "GraphicLayer.hpp"
-#include "GameManagement.hpp"
-#include "Operations.hpp"
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
 
+#include "MenuFactory.hpp"
+#include "MinesweeperBoardModel.hpp"
 
-//class Menu
-//{
-//    GameManagement* board;
-//    Game* game;
-//    sf::RenderWindow* window;
+enum class MenuElement {LEVEL_EASY,
+                        LEVEL_MEDIUM,
+                        LEVEL_HARD,
+                        SIZE_SMALL,
+                        SIZE_MEDIUM,
+                        SIZE_LARGE,
+                        START,
+                        ERROR};
 
-//    void setGraphicLayer(GameMode level);
-//    void setConsoleLayer(GameMode level);
-//    GameMode GraphicMenu();
-//    GameMode ConsoleMenu();
+enum class GameLevel { EASY, MEDIUM, HARD };
 
-//    //GRAPHIC
-//    void drawButton(float posX, float posY, std::string sign, sf::RenderWindow* window);
-//    enum class Button {EASY, MEDIUM, HARD, EXIT};
-//    Button decodePosition(int posX, int posY);
+struct MenuButton
+{
+    MenuElement name;
+    bool isChecked;
+    int locationX;
+    int locationY;
+    int sizeX;
+    int sizeY;
 
-//public:
-//    Menu();
-//    ~Menu();
-//    void turnOnGame(Layer layer);
+    int boardX;
+    int boardY;
 
-//};
+    MenuButton(MenuElement name, int locationX, int locationY, int sizeX, int sizeY) :
+        name(name), locationX(locationX), locationY(locationY), sizeX(sizeX), sizeY(sizeY) {
+        isChecked = false;
+    }
+    MenuButton(){;}
+    bool checkIsThisField(int X, int Y)
+    {
+        if (X >= locationX and X <= locationX+sizeX)
+            if (Y >= locationY and Y <= locationY+sizeY)
+                return true;
+        return false;
+    }
+    void changeStatus()
+    {
+        if (!isChecked) isChecked = true;
+        if (isChecked) isChecked = false;
+    }
+};
+
+class Menu
+{
+    MenuButton buttons[7];
+    sf::RenderWindow* window;
+
+    MenuElement levelChecked;
+    MenuElement sizeChecked;
+
+    bool isLevelCheck;
+    GameLevel level;
+
+    bool isBoardCheck;
+    sf::Vector2i sizeBoard;
+
+    bool isStartedFlag;
+
+    MenuElement mouseConverter(int X, int Y);
+    void changeElementStatus(MenuElement element); //TO DO
+
+    bool canStart() const; // TO DO
+    void display(); // TO FINISH
+
+public:
+    Menu();
+    ~Menu();
+
+    MinesweeperBoard* getGameDetails(); // TO FINISH
+};
+
+

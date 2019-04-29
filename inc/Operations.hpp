@@ -17,7 +17,7 @@ enum class OperationOnField
     DELETE_FLAG
 };
 
-enum class FieldStatus
+enum class FieldElement
 {
     FLAG,
     HIDDEN,
@@ -26,10 +26,4 @@ enum class FieldStatus
     NUMBER,
     ERROR,
     BLOW_UP
-};
-
-enum class Layer
-{
-    CONSOLE,
-    GRAPHIC
 };

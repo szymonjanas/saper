@@ -1,4 +1,4 @@
-﻿#include"TextView.hpp"
+#include"TextView.hpp"
 
 MSBoardTextView::MSBoardTextView(MinesweeperBoard& board)
 {

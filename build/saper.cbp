@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="saper"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\SFML-2.5.1\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/szymon/CppProjects/saper/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/szymon/CppProjects/saper/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="saper">
+				<Option output="/home/szymon/CppProjects/saper/build/saper" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/szymon/CppProjects/saper/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/szymon/CppProjects/saper/SFML_INCLUDE_DIR"/>
+					<Add directory="/home/szymon/CppProjects/saper/inc"/>
+					<Add directory="/home/szymon/CppProjects/saper/tests"/>
+					<Add directory="/home/szymon/SFML-2.5.1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 saper"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="saper/fast">
+				<Option output="/home/szymon/CppProjects/saper/build/saper" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/szymon/CppProjects/saper/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/szymon/CppProjects/saper/SFML_INCLUDE_DIR"/>
+					<Add directory="/home/szymon/CppProjects/saper/inc"/>
+					<Add directory="/home/szymon/CppProjects/saper/tests"/>
+					<Add directory="/home/szymon/SFML-2.5.1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 saper/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="saper-lib">
+				<Option output="/home/szymon/CppProjects/saper/build/libsaper-lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/szymon/CppProjects/saper/build"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/szymon/CppProjects/saper/SFML_INCLUDE_DIR"/>
+					<Add directory="/home/szymon/CppProjects/saper/inc"/>
+					<Add directory="/home/szymon/CppProjects/saper/tests"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 saper-lib"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="saper-lib/fast">
+				<Option output="/home/szymon/CppProjects/saper/build/libsaper-lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/szymon/CppProjects/saper/build"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/szymon/CppProjects/saper/SFML_INCLUDE_DIR"/>
+					<Add directory="/home/szymon/CppProjects/saper/inc"/>
+					<Add directory="/home/szymon/CppProjects/saper/tests"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 saper-lib/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/szymon/CppProjects/saper/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="saper-text">
+				<Option output="/home/szymon/CppProjects/saper/build/saper-text" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/szymon/CppProjects/saper/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/szymon/CppProjects/saper/SFML_INCLUDE_DIR"/>
+					<Add directory="/home/szymon/CppProjects/saper/inc"/>
+					<Add directory="/home/szymon/CppProjects/saper/tests"/>
+					<Add directory="/home/szymon/SFML-2.5.1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 saper-text"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="saper-text/fast">
+				<Option output="/home/szymon/CppProjects/saper/build/saper-text" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/szymon/CppProjects/saper/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/szymon/CppProjects/saper/SFML_INCLUDE_DIR"/>
+					<Add directory="/home/szymon/CppProjects/saper/inc"/>
+					<Add directory="/home/szymon/CppProjects/saper/tests"/>
+					<Add directory="/home/szymon/SFML-2.5.1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 saper-text/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="saper-tests">
+				<Option output="/home/szymon/CppProjects/saper/build/saper-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/szymon/CppProjects/saper/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/szymon/CppProjects/saper/SFML_INCLUDE_DIR"/>
+					<Add directory="/home/szymon/CppProjects/saper/inc"/>
+					<Add directory="/home/szymon/CppProjects/saper/tests"/>
+					<Add directory="/home/szymon/SFML-2.5.1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 saper-tests"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="saper-tests/fast">
+				<Option output="/home/szymon/CppProjects/saper/build/saper-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/szymon/CppProjects/saper/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/szymon/CppProjects/saper/SFML_INCLUDE_DIR"/>
+					<Add directory="/home/szymon/CppProjects/saper/inc"/>
+					<Add directory="/home/szymon/CppProjects/saper/tests"/>
+					<Add directory="/home/szymon/SFML-2.5.1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 saper-tests/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/szymon/CppProjects/saper/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/szymon/CppProjects/saper/src/ConsoleLayer.cpp">
+			<Option target="saper-lib"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/src/FieldShapeFactory.cpp">
+			<Option target="saper-lib"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/src/GameSFMLSettings.cpp">
+			<Option target="saper-lib"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/src/GraphicControler.cpp">
+			<Option target="saper-lib"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/src/GraphicView.cpp">
+			<Option target="saper-lib"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/src/Menu.cpp">
+			<Option target="saper-lib"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/src/MenuFactory.cpp">
+			<Option target="saper-lib"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/src/MinesweeperBoardModel.cpp">
+			<Option target="saper-lib"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/src/MousePositionConverter.cpp">
+			<Option target="saper-lib"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/src/main.cpp">
+			<Option target="saper"/>
+			<Option target="saper-lib"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/src/mainText.cpp">
+			<Option target="saper-text"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/tests/MousePositionConverterTest.cpp">
+			<Option target="saper-tests"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/tests/mainTest.cpp">
+			<Option target="saper-tests"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/../../SFML-2.5.1/SFMLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\SFML-2.5.1\"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/../../SFML-2.5.1/SFMLConfigDependencies.cmake">
+			<Option virtualFolder="CMake Files\..\..\SFML-2.5.1\"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/../../SFML-2.5.1/SFMLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\SFML-2.5.1\"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/saper/../../SFML-2.5.1/SFMLSharedTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\SFML-2.5.1\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

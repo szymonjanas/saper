@@ -1,134 +1,146 @@
-//#include "Menu.hpp"
+#include "Menu.hpp"
 
-//Menu::Menu()
-//{}
-//Menu::~Menu()
-//{
-//    delete board;
-//    delete game;
-//    delete window;
-//}
+Menu::Menu()
+{
+    this->window = new sf::RenderWindow(sf::VideoMode(300, 230), "SAPER MENU");
 
-//void Menu::turnOnGame(Layer layer)
-//{
-//    switch (layer)
-//    {
-//    case Layer::CONSOLE:
-//        setConsoleLayer(ConsoleMenu());
-//        break;
-//    case Layer::GRAPHIC:
-//        setGraphicLayer(GraphicMenu());
-//        break;
-//    }
+    levelChecked = MenuElement::ERROR;
+    sizeChecked = MenuElement::ERROR;
 
+    buttons[0] = MenuButton(MenuElement::LEVEL_EASY, 10, 100, 80, 30);
+    buttons[1] = MenuButton(MenuElement::LEVEL_MEDIUM, 10, 140, 80, 30);
+    buttons[2] = MenuButton(MenuElement::LEVEL_HARD, 10, 180, 80, 30);
+    buttons[3] = MenuButton(MenuElement::SIZE_SMALL, 110, 100, 80 , 30);
+    buttons[3].boardX = 8; buttons[3].boardY = 8;
+    buttons[4] = MenuButton(MenuElement::SIZE_MEDIUM, 110 ,140, 80, 30);
+    buttons[4].boardX = 16; buttons[4].boardY = 16;
+    buttons[5] = MenuButton(MenuElement::SIZE_LARGE, 110 ,180, 80, 30);
+    buttons[5].boardX = 30; buttons[5].boardY = 16;
+    buttons[6] = MenuButton(MenuElement::START, 210, 100, 80, 110);
 
-//}
+}
 
-//void Menu::setGraphicLayer(GameMode level)
-//{
-//    delete window;
-//    board = new GameManagement(level);
-//    game = new GraphicLayer(board);
-//    game->start();
-//}
+Menu::~Menu()
+{
+    delete window;
+}
 
-//void Menu::setConsoleLayer(GameMode level)
-//{
-//    board = new GameManagement (level);
-//    game = new ConsoleLayer(board);
-//    game->start();
-//}
+void Menu::display()
+{
+    MenuFactory SAPER(250, 35, 20, window);
+    SAPER.drawGameStatusInfo("          SAPER MENU", 25, 20);
 
-//void Menu::drawButton(float posX, float posY, std::string sign, sf::RenderWindow *window)
-//{
-//    sf::RectangleShape rectangle;
-//    rectangle.setSize(sf::Vector2f(100, 40));
-//    rectangle.setOutlineColor(sf::Color(140, 140, 140));
-//    rectangle.setOutlineThickness(2);
-//    rectangle.setFillColor(sf::Color(115, 115, 115));
-//    rectangle.setPosition(posX, posY);
-//    window->draw(rectangle);
+    MenuFactory AUTOR(70, 30, 10, window);
+    AUTOR.drawAuthorDetails(75, 70);
 
-//    sf::Font font;
-//    if(!font.loadFromFile("../fonts/LatoBlack.ttf"))
-//        std::cerr << "ERROR! Font Load From File False!" << std::endl;
-//    sf::Text text(sign, font, 20);
-//    text.setFillColor(sf::Color::Black);
-//    text.setPosition(posX+10, posY+5);
-//    window->draw(text);
-//}
+    MenuFactory LEVEL(80, 30, 12, window);
+    LEVEL.drawLevelButton(buttons[0].isChecked, "    EASY", 10, 100);
+    LEVEL.drawLevelButton(buttons[1].isChecked, " MEDIUM", 10, 140);
+    LEVEL.drawLevelButton(buttons[2].isChecked, "    HARD", 10, 180);
 
-//Menu::Button Menu::decodePosition(int posX, int posY)
-//{
-//    if (posX >= 50 and posX <= 200){
-//        if (posY >= 10 and posY <= 50) return Button::EASY;
-//        if (posY >= 60 and posY <= 100) return Button::MEDIUM;
-//        if (posY >= 110 and posY <= 150) return Button::HARD;
-//        if (posY >= 160 and posY <= 200) return Button::EXIT;
-//    }
-//}
+    MenuFactory SIZE(80, 30, 12, window);
+    SIZE.drawLevelButton(buttons[3].isChecked, "     8x8", 110, 100);
+    SIZE.drawLevelButton(buttons[4].isChecked, "   16x16", 110, 140);
+    SIZE.drawLevelButton(buttons[5].isChecked, "   30x16", 110, 180);
 
-//GameMode Menu::GraphicMenu()
-//{
-//    int sizeX = 200;
-//    int sizeY = 220;
-//    window = new sf::RenderWindow(sf::VideoMode(sizeX, sizeY), "SAPER MENU");
-//    while (window->isOpen())
-//    {
-//        sf::Event event;
-//        window->clear(sf::Color(160, 160, 160));
-//        drawButton(50, 10, "EASY", window);
-//        drawButton(50, 60, "MEDIUM", window);
-//        drawButton(50, 110, "HARD", window);
-//        drawButton(50, 160, "EXIT", window);
-//        window->display();
-//        while (window->pollEvent(event))
-//        {
-//            if (event.type == sf::Event::Closed)
-//            {
-//                exit(1);
-//            }
-//            if (event.type == sf::Event::MouseButtonPressed and event.mouseButton.button == sf::Mouse::Left)
-//            {
-//                switch (decodePosition(event.mouseButton.x, event.mouseButton.y))
-//                {
-//                case Button::EASY:
-//                    return GameMode::EASY;
-//                    break;
-//                case Button::MEDIUM:
-//                    return GameMode::MEDIUM;
-//                    break;
-//                case Button::HARD:
-//                    return GameMode::HARD;
-//                    break;
-//                case Button::EXIT:
-//                    exit(1);
-//                    break;
-//                }
-//            }
-//        }
-//    }
-//}
+    MenuFactory START(80, 110, 16, window);
+    START.drawSignButton(false, "\n\n START", 210, 100);
+}
 
-//GameMode Menu::ConsoleMenu()
-//{
-//    std::cout << std::endl;
-//    std::cout << "==========SAPER MENU==========" << std::endl;
-//    std::cout << "=     Please select level    =" << std::endl;
-//    std::cout << "=         1. EASY            =" << std::endl;
-//    std::cout << "=         2. MEDIUM          =" << std::endl;
-//    std::cout << "=         3. HARD            =" << std::endl;
-//    std::cout << "=                            =" << std::endl;
-//    std::cout << "=         0. EXIT            =" << std::endl;
-//    std::cout << "==============================" << std::endl;
-//    std::cout << "         YOUR CHOICE: "          << std::endl;
-//    int i;
-//    std::cin >> i;
-//    switch(i)
-//    {
-//    case 1: return GameMode::EASY; break;
-//    case 2: return GameMode::MEDIUM; break;
-//    case 3: return GameMode::HARD; break;
-//    case 0: exit(1); break;
-//    }
-//}
+MenuElement Menu::mouseConverter(int X, int Y)
+{
+    for (int i = 0; i < 7; ++i)
+        if (buttons[i].checkIsThisField(X, Y))
+            return  buttons[i].name;
+    return MenuElement::ERROR;
+}
+
+void Menu::changeElementStatus(MenuElement element)
+{
+    switch (element)
+    {
+    case MenuElement::LEVEL_EASY:
+        levelChecked = MenuElement::LEVEL_EASY;
+        break;
+    case MenuElement::LEVEL_MEDIUM:
+        levelChecked = MenuElement::LEVEL_MEDIUM;
+        break;
+    case MenuElement::LEVEL_HARD:
+        levelChecked = MenuElement::LEVEL_HARD;
+        break;
+    case MenuElement::SIZE_SMALL:
+        sizeChecked = MenuElement::SIZE_SMALL;
+        break;
+    case MenuElement::SIZE_MEDIUM:
+        sizeChecked = MenuElement::SIZE_MEDIUM;
+        break;
+    case MenuElement::SIZE_LARGE:
+        sizeChecked = MenuElement::SIZE_LARGE;
+        break;
+    }
+
+    for (int i = 0; i < 7; ++i)
+        buttons[i].isChecked = false;
+    for (int i = 0; i < 7; ++i)
+        if (buttons[i].name == levelChecked)
+            buttons[i].isChecked = true;
+    for (int i = 0; i < 7; ++i)
+        if (buttons[i].name == sizeChecked)
+            buttons[i].isChecked = true;
+}
+
+MinesweeperBoard* Menu::getGameDetails()
+{
+    MinesweeperBoard* board;
+    while(window->isOpen())
+    {
+        sf::Event event;
+        while (window->pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                exit(1);
+        }
+        if (event.type == sf::Event::MouseButtonPressed)
+        {
+            MenuElement mouseElement = mouseConverter(event.mouseButton.x, event.mouseButton.y);
+            switch (event.mouseButton.button)
+            {
+                case sf::Mouse::Left:
+                        if (mouseElement == MenuElement::START)
+                            if (levelChecked != MenuElement::ERROR)
+                                if (sizeChecked != MenuElement::ERROR)
+                                {
+                                    int boardSizeX;
+                                    int boardSizeY;
+                                    GameMode mode;
+                                    for (int i = 0; i < 7; ++i)
+                                        if (buttons[i].name == sizeChecked)
+                                        {
+                                            boardSizeX = buttons[i].boardX;
+                                            boardSizeY = buttons[i].boardY;
+                                        }
+                                    switch (levelChecked)
+                                    {
+                                    case MenuElement::LEVEL_EASY:
+                                        mode = GameMode::EASY;
+                                        break;
+                                    case MenuElement::LEVEL_MEDIUM:
+                                        mode = GameMode::MEDIUM;
+                                        break;
+                                    case MenuElement::LEVEL_HARD:
+                                        mode = GameMode::HARD;
+                                        break;
+                                    }
+                                    board = new MinesweeperBoard(boardSizeX, boardSizeY, mode);
+                                    window->close();
+                                }
+                        changeElementStatus(mouseElement);
+                        break;
+            }
+        }
+        window->clear(sf::Color(160, 160, 160));
+        display();
+        window->display();
+    }
+    return board;
+}

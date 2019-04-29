@@ -1,0 +1,1 @@
+/usr/bin/g++    -rdynamic CMakeFiles/saper.dir/src/main.cpp.o  -o saper  -LSFML_LIBRARY_DIR -Wl,-rpath,SFML_LIBRARY_DIR libsaper-lib.a libsaper-lib.a -lpthread /home/szymon/SFML-2.5.1/lib/libsfml-graphics.so.2.5.1 /home/szymon/SFML-2.5.1/lib/libsfml-window.so.2.5.1 /home/szymon/SFML-2.5.1/lib/libsfml-system.so.2.5.1 

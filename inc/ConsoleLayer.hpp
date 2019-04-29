@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MinesweeperBoard.hpp"
+#include "MinesweeperBoardModel.hpp"
 
 class MSBoardTextView
 {

@@ -1,17 +1,14 @@
 #include <iostream>
-#include <SFML/Window.h>
+#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include"MinesweeperBoard.hpp"
-#include"ConsoleLayer.hpp"
-#include "GraphicLayer.hpp"
+#include "MinesweeperBoardModel.hpp"
+#include "Menu.hpp"
 #include "GraphicControler.hpp"
 
 int main()
 {
-    MinesweeperBoard board(8, 8, GameMode::EASY);
-    //MSBoardTextView view (board);
-    //MSTextControler ctrl (board, view);
-    //ctrl.play();
-    MSSFMLView view(&board);
-    view.play();
+    Menu menu;
+    MinesweeperBoard* board = menu.getGameDetails();
+    GraphicControler game(board);
+    game.play();
 }

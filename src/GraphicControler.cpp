@@ -1,35 +1,39 @@
 #include "GraphicControler.hpp"
-
-MSSFMLView::MSSFMLView(MinesweeperBoard* board)
+#include "TextView.hpp"
+#include "GameSFMLSettings.hpp"
+GraphicControler::GraphicControler(MinesweeperBoard* board)
 {
     this->board = board;
     fieldCountX = this->board->getBoardWidth();
     fieldCountY = this->board->getBoardHeight();
-    distanceBetweenFields = 10;
-    distanceFromLeftEdge = 10;
-    distanceFromTopEdge = 10;
-    fieldSizeX = 30;
-    fieldSizeY = 30;
-    window = new sf::RenderWindow(sf::VideoMode(board->getBoardWidth()*(fieldSizeX+distanceBetweenFields)+10,
-                                                board->getBoardHeight()*(fieldSizeY+distanceBetweenFields)+10),
-                                  "SAPER");
-    drawElements = new FieldShapeDrawingFactory (fieldSizeX,
-                                                 fieldSizeY,
-                                                 window,
-                                                 board);
-    converter = new MSGraphicMouseConverter (board);
+
+    GameSFMLSettings settings;
+    distanceBetweenFields = settings.getDistanceBetweenFields();
+    distanceFromLeftEdge = settings.getDistanceFromLeftEdge();
+    distanceFromTopEdge = settings.getDistanceFromTopEdge();
+    fieldSizeX = settings.getFieldSizeX();
+    fieldSizeY = settings.getFieldSizeY();
+
+    screenSizeX = board->getBoardWidth()*(fieldSizeX+distanceBetweenFields)+10;
+    screenSizeY = board->getBoardHeight()*(fieldSizeY+distanceBetweenFields)+10 + 60;
+
+    window = new sf::RenderWindow(sf::VideoMode(screenSizeX, screenSizeY), "SAPER");
+    drawElements = new GraphicView (board, window);
+    converter = new MousePositionConverter (board);
     window->clear(sf::Color(160, 160, 160));
 }
 
-MSSFMLView::~MSSFMLView()
+GraphicControler::~GraphicControler()
 {
     delete window;
     delete drawElements;
     delete converter;
 }
 
-void MSSFMLView::play()
+void GraphicControler::play()
 {
+    MSBoardTextView textview(*board);
+    bool flagEnd = true;
     while(window->isOpen())
     {
         sf::Event event;
@@ -38,8 +42,18 @@ void MSSFMLView::play()
             if (event.type == sf::Event::Closed)
                 exit(1);
         }
+        bool flag = true;
         while (board->getGameState() == GameState::RUNNING)
         {
+            if (flag)
+            {
+                board->debug_display();
+                window->clear(sf::Color(160, 160, 160));
+                drawElements->drawGameStatusInfo("WELCOME IN GAME" , screenSizeX);
+                drawElements->showBoard();
+                window->display();
+                flag=false;
+            }
             sf::Event event;
             while (window->pollEvent(event))
             {
@@ -59,19 +73,33 @@ void MSSFMLView::play()
                                 break;
                         case sf::Mouse::Right:
                                 board->toggleFlag(X, Y);
+                                break;
                     }
+                    board->debug_display();
+                    window->clear(sf::Color(160, 160, 160));
+                    drawElements->drawGameStatusInfo("GAME RUNNING" , screenSizeX);
+                    drawElements->showBoard();
+                    window->display();
                 }
             }
+
+        }
+
+        if (flagEnd)
+        {
+            window->clear(sf::Color(160, 160, 160));
             switch (board->getGameState())
             {
                 case GameState::FINISHED_WIN:
-                    std::cerr << "You WIN" << std::endl; break;
+                    drawElements->drawGameStatusInfo("YOU ARE WINNER!" , screenSizeX);
+                    flagEnd = false; break;
                 case GameState::FINISHED_LOOSE:
-                    std::cerr << "You LOOSE" << std::endl; break;
+                    std::cout << "YOU LOOSE!" << std::endl;
+                    drawElements->drawGameStatusInfo("YOU LOOSE!" , screenSizeX);
+                    flagEnd = false; break;
                 case GameState::RUNNING: break;
             }
-            window->clear(sf::Color(160, 160, 160));
-            drawElements->showOnScreen();
+            drawElements->showBoard();
             window->display();
         }
     }

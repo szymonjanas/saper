@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsaper-lib.a  CMakeFiles/saper-lib.dir/src/main.cpp.o CMakeFiles/saper-lib.dir/src/Menu.cpp.o CMakeFiles/saper-lib.dir/src/MenuFactory.cpp.o CMakeFiles/saper-lib.dir/src/MinesweeperBoardModel.cpp.o CMakeFiles/saper-lib.dir/src/GameSFMLSettings.cpp.o CMakeFiles/saper-lib.dir/src/MousePositionConverter.cpp.o CMakeFiles/saper-lib.dir/src/GraphicView.cpp.o CMakeFiles/saper-lib.dir/src/FieldShapeFactory.cpp.o CMakeFiles/saper-lib.dir/src/GraphicControler.cpp.o CMakeFiles/saper-lib.dir/src/ConsoleLayer.cpp.o
+/usr/bin/ranlib libsaper-lib.a
