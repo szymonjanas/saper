@@ -11,9 +11,6 @@ CMakeFiles/saper-lib.dir/src/FieldShapeFactory.cpp.o: ../inc/MinesweeperBoardMod
 CMakeFiles/saper-lib.dir/src/FieldShapeFactory.cpp.o: ../inc/MousePositionConverter.hpp
 CMakeFiles/saper-lib.dir/src/FieldShapeFactory.cpp.o: ../src/FieldShapeFactory.cpp
 
-CMakeFiles/saper-lib.dir/src/Game.cpp.o: ../inc/Game.hpp
-CMakeFiles/saper-lib.dir/src/Game.cpp.o: ../src/Game.cpp
-
 CMakeFiles/saper-lib.dir/src/GameSFMLSettings.cpp.o: ../inc/GameSFMLSettings.hpp
 CMakeFiles/saper-lib.dir/src/GameSFMLSettings.cpp.o: ../src/GameSFMLSettings.cpp
 

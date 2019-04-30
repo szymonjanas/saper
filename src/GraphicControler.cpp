@@ -91,7 +91,7 @@ void GraphicControler::play()
             switch (board->getGameState())
             {
                 case GameState::FINISHED_WIN:
-                    drawElements->drawGameStatusInfo("YOU ARE WINNER!" , screenSizeX);
+                    drawElements->drawGameStatusInfo("YOU WIN!" , screenSizeX);
                     flagEnd = false; break;
                 case GameState::FINISHED_LOOSE:
                     std::cout << "YOU LOOSE!" << std::endl;

@@ -11,4 +11,6 @@ int main()
     MinesweeperBoard* board = menu.getGameDetails();
     GraphicControler game(board);
     game.play();
+
+    delete board;
 }
